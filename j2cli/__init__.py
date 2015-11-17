@@ -5,7 +5,11 @@ import pkg_resources
 
 __author__ = "Mark Vartanyan"
 __email__ = "kolypto@gmail.com"
-__version__ = pkg_resources.get_distribution('j2cli').version
+try:
+    __version__ = pkg_resources.get_distribution('j2cli').version
+except pkg_resources.DistributionNotFound:
+    # Running in PyInstaller environment, ignore
+    __version__ = None
 
 from j2cli.cli import main
 
